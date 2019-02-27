@@ -1,0 +1,3 @@
+https://www.youtube.com/watch?v=XgCF58tuo2k&list=PLshdtb5UWjSrOJfpFOE-u55s3SnY2EO9v&index=1   - java
+https://stuff.mit.edu/afs/sipb/project/android/docs/tools/sdk/eclipse-adt.html
+https://developer.android.com/studio
