@@ -3,6 +3,7 @@ package com.example.helloworldapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 
@@ -23,6 +24,13 @@ public class MessageActivity extends AppCompatActivity {
         // utworzenie obiektu typu textView i przypisanie mu obiektu o id=display_message - zdefiniowanym w widoku activity_message.xml
         TextView textView = findViewById(R.id.display_message);
         textView.setText(message);
+
+    }
+
+    public void openFinalActivity(View view) {
+
+        // nastepuje przejscie do ekanu FinalActivity
+        startActivity(new Intent(this, FinalActivity.class));
 
     }
 }
