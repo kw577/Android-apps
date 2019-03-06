@@ -35,6 +35,12 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnDb
                         .replace(R.id.fragment_container, new AddContactFragment())
                         .addToBackStack(null).commit();
                 break;
+
+            case 1: // wybrano opcje podgladu listy kontaktow
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new ReadContactsFragment())
+                        .addToBackStack(null).commit();
+                break;
         }
 
     }
