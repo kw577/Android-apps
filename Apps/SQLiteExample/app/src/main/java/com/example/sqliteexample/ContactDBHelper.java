@@ -75,4 +75,21 @@ public class ContactDBHelper extends SQLiteOpenHelper {
 
     }
 
+
+    //metoda update'owania danych w bazie
+    public void updateContact(int id, String name, String email, SQLiteDatabase database){
+
+       ContentValues contentValues = new ContentValues();
+       contentValues.put(ContactContract.ContactEntry.NAME, name);
+       contentValues.put(ContactContract.ContactEntry.EMAIL, email);
+
+       String selection = ContactContract.ContactEntry.CONTACT_ID + " = " + id;
+       database.update(ContactContract.ContactEntry.TABLE_NAME, contentValues, selection, null);
+
+
+
+
+    }
+
+
 }
