@@ -92,4 +92,17 @@ public class ContactDBHelper extends SQLiteOpenHelper {
     }
 
 
+    public void deleteContact(int id, SQLiteDatabase database){
+       //warunek dla zapytania do bazy
+       String selection = ContactContract.ContactEntry.CONTACT_ID + " = " + id;
+
+       //usuniecie wybranej pozycji z bazy danych
+        database.delete(ContactContract.ContactEntry.TABLE_NAME, selection, null);
+
+
+
+    }
+
+
+
 }

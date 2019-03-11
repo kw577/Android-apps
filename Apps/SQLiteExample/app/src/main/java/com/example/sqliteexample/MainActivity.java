@@ -46,6 +46,12 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnDb
                         .replace(R.id.fragment_container, new UpdateFragment())
                         .addToBackStack(null).commit();
                 break;
+
+            case 3: // wybrano opcje delete wybranej pozycji z listy kontaktow - przeniesienie do odpowiedniego gui
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new DeleteContactFragment())
+                        .addToBackStack(null).commit();
+                break;
         }
 
     }
