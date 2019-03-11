@@ -1,3 +1,11 @@
 https://www.youtube.com/watch?v=XgCF58tuo2k&list=PLshdtb5UWjSrOJfpFOE-u55s3SnY2EO9v&index=1   - java
 https://stuff.mit.edu/afs/sipb/project/android/docs/tools/sdk/eclipse-adt.html
 https://developer.android.com/studio
+
+https://developer.android.com/topic/libraries/architecture/room
+Uwaga !!! - aby dodac Room Persistance Library nalezy upewnic sie ze w lokalizacji:
+Gradle Scripts -> build.gradle:   w sekcji allorijects{repositories{......}}   znajduje sie google()
+
+W lokalizacji:  Gradle Scripts -> build.gradle (Module.app) w sekcji dependancies{} dodajemy:
+implementation 'android.arch.persistence.room:runtime:1.1.1'
+annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
