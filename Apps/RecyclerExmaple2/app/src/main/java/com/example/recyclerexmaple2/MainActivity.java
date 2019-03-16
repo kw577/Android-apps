@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerViev.setLayoutManager(layoutManager);
 
-        adapter = new RecyclerAdapter(images);
+        adapter = new RecyclerAdapter(images, this);
         recyclerViev.setAdapter(adapter);
 
 
