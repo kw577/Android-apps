@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".SecondActivity"
     android:orientation="vertical"
     >
     <!--Dodanie paska nawigacji do glownego ekranu-->
@@ -15,7 +15,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="First Activity"
+        android:text="Second Activity"
         android:textStyle="bold"
         android:textSize="22sp"
         android:gravity="center"
