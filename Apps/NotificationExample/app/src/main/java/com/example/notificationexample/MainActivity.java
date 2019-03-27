@@ -4,6 +4,8 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
@@ -50,20 +52,33 @@ public class MainActivity extends AppCompatActivity {
 
         //---------------
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
+        final NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
 
-        builder.setSmallIcon(R.drawable.ic_sms_notification);
-        builder.setContentTitle("New Notification");
-        builder.setContentText("This is new notification...");
+        builder.setSmallIcon(R.drawable.ic_download);
+        builder.setContentTitle("Image download");
+        builder.setContentText("Download in progress...");
         builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        //progress bar
+        final int max_progress = 100;
+        int current_progress = 0;
+        builder.setProgress(max_progress, current_progress, false);
+
+
+
+
+        //-------------------
+
+
+
 
         //pokliknieciu na notyfikacje nastepuje przeniesienie do aplikacji
         builder.setAutoCancel(true);
         builder.setContentIntent(landingPendingIntent);
 
         //dodanie przyciskow do notyfikacji
-        builder.addAction(R.drawable.ic_sms_notification, "Yes", yesPendingIntent);
-        builder.addAction(R.drawable.ic_sms_notification, "No", noPendingIntent);
+        builder.addAction(R.drawable.ic_download, "Yes", yesPendingIntent);
+        builder.addAction(R.drawable.ic_download, "No", noPendingIntent);
 
 
         //-----------------
@@ -85,11 +100,46 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        //Expandable Notification - rozwijana notyfikacja - tu przechowuje obrazek
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.img3);
+        builder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bitmap));
 
-        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+        //----------------
+
+
+
+        final NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
         notificationManagerCompat.notify(NOTIFICATION_ID, builder.build());
 
 
+        //progres bar - update status
+        Thread thread = new Thread(){
+            @Override
+            public void run() {
+                int count = 0;
+
+                try {
+                    while(count <= 100){
+                        count += 10;
+                        sleep(1000);
+                        builder.setProgress(max_progress, count, false);
+                        notificationManagerCompat.notify(NOTIFICATION_ID, builder.build()); //upadate notyfikacji
+
+                    }
+
+                    //po zakonczeniu ladawania paska postepu
+                    builder.setContentText("Download completed");
+                    builder.setProgress(0, 0, false); //usuniecie paska postepu z notyfikacji
+                    notificationManagerCompat.notify(NOTIFICATION_ID, builder.build()); //upadate notyfikacji
+
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        thread.start();
     }
 
 
